@@ -569,12 +569,11 @@ export default class Dropdown extends PureComponent {
 
     let { selected, leftInset, rightInset } = this.state;
 
-    let props = propsExtractor(item, index);
+    let props = this.props.propsExtractor(item, index);
 
     let {
       valueExtractor,
       labelExtractor,
-      propsExtractor,
       textColor,
       itemColor,
       baseColor,
