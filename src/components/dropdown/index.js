@@ -499,8 +499,8 @@ export default class Dropdown extends PureComponent {
       return renderBase({ ...props, title, value, renderAccessory });
     }
 
-    title = null == title || 'string' === typeof title?
-      title:
+    title = null == title || 'string' === typeof title ?
+      title :
       String(title);
 
     return (
@@ -569,6 +569,8 @@ export default class Dropdown extends PureComponent {
 
     let { selected, leftInset, rightInset } = this.state;
 
+    let props = propsExtractor(item, index);
+
     let {
       valueExtractor,
       labelExtractor,
@@ -583,9 +585,7 @@ export default class Dropdown extends PureComponent {
       rippleOpacity,
       rippleDuration,
       shadeOpacity,
-    } = this.props;
-
-    let props = propsExtractor(item, index);
+    } = Object.assign(this.props, props);
 
     let { style, disabled }
       = props
@@ -605,16 +605,16 @@ export default class Dropdown extends PureComponent {
     let value = valueExtractor(item, index);
     let label = labelExtractor(item, index);
 
-    let title = null == label?
-      value:
+    let title = null == label ?
+      value :
       label;
 
-    let color = disabled?
-      disabledItemColor:
-      ~selected?
-        index === selected?
-          selectedItemColor:
-          itemColor:
+    let color = disabled ?
+      disabledItemColor :
+      ~selected ?
+        index === selected ?
+          selectedItemColor :
+          itemColor :
         selectedItemColor;
 
     let textStyle = { color, fontSize };
@@ -682,7 +682,7 @@ export default class Dropdown extends PureComponent {
     if (null == dropdownPosition) {
       switch (selected) {
         case -1:
-          translateY -= 1 === itemCount? 0 : itemSize;
+          translateY -= 1 === itemCount ? 0 : itemSize;
           break;
 
         case 0:
