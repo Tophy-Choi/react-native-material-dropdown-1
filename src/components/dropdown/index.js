@@ -584,7 +584,7 @@ export default class Dropdown extends PureComponent {
       rippleOpacity,
       rippleDuration,
       shadeOpacity,
-    } = Object.assign(this.props, props);
+    } = Object.assign({}, this.props, props);
 
     let { style, disabled }
       = props
