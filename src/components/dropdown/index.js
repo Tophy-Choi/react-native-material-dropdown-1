@@ -172,6 +172,8 @@ export default class Dropdown extends PureComponent {
 
     this.keyExtractor = this.keyExtractor.bind(this);
 
+    this.getItemLayout = this.getItemLayout.bind(this);
+
     this.blur = () => this.onClose();
     this.focus = this.onPress;
 
@@ -474,6 +476,16 @@ export default class Dropdown extends PureComponent {
     return `${index}-${valueExtractor(item, index)}`;
   }
 
+  getItemLayout(data, index) {
+    let itemSize = this.itemSize();
+
+    return {
+      length: itemSize,
+      offset: itemSize * index,
+      index: index
+    };
+  }
+
   renderBase(props) {
     let { value } = this.state;
     let {
@@ -755,6 +767,8 @@ export default class Dropdown extends PureComponent {
                 keyExtractor={this.keyExtractor}
                 scrollEnabled={visibleItemCount < itemCount}
                 contentContainerStyle={styles.scrollContainer}
+                getItemLayout={this.getItemLayout}
+                initialScrollIndex={this.selectedIndex()}
               />
             </View>
           </Animated.View>
